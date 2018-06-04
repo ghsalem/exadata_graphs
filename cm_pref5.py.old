@@ -1,0 +1,129 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'cm_pref.ui'
+#
+# Created by: PyQt5 UI code generator 5.8
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+try:
+	_fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+	def _fromUtf8(s):
+		return s
+
+try:
+	_encoding = QtWidgets.QApplication.UnicodeUTF8
+	def _translate(context, text, disambig):
+		return QtWidgets.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+	def _translate(context, text, disambig):
+		return QtWidgets.QApplication.translate(context, text, disambig)
+
+class Ui_cm_pref(object):
+	def setupUi(self, cm_pref):
+		self.cm_pref=cm_pref
+		cm_pref.setObjectName("cm_pref")
+		cm_pref.resize(580, 356)
+		self.buttonBox = QtWidgets.QDialogButtonBox(cm_pref)
+		self.buttonBox.setGeometry(QtCore.QRect(210, 310, 341, 32))
+		self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+		self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+		self.buttonBox.setObjectName("buttonBox")
+		self.ref_label = QtWidgets.QLabel(cm_pref)
+		self.ref_label.setObjectName("ref_label")
+		self.ref_label.setGeometry(QtCore.QRect(30, 10, 121, 17))
+		self.refresh_rate = QtWidgets.QLineEdit(cm_pref)
+		self.refresh_rate.setGeometry(QtCore.QRect(193, 10, 35, 17))
+		self.refresh_rate.setObjectName("refresh_rate")
+
+		self.bridge_machine = QtWidgets.QLineEdit(cm_pref)
+		self.bridge_machine.setObjectName("bridge_machine")
+		self.bridge_machine.setGeometry(QtCore.QRect(193, 30, 125, 17))
+		self.bridge_machine_label = QtWidgets.QLabel(cm_pref)
+		self.bridge_machine_label.setObjectName("bridge_machine_label")
+		self.bridge_machine_label.setGeometry(QtCore.QRect(30, 30, 121, 17))
+		self.List_Cells = QtWidgets.QTextEdit(cm_pref)
+		self.List_Cells.setGeometry(QtCore.QRect(193, 100, 341, 75))
+		self.List_Cells.setObjectName("List_Cells")
+		self.list_cells_label = QtWidgets.QLabel(cm_pref)
+		self.list_cells_label.setGeometry(QtCore.QRect(30, 100, 121, 20))
+		self.list_cells_label.setObjectName("list_cells_label")
+		self.save_file_label = QtWidgets.QLabel(cm_pref)
+		self.save_file_label.setGeometry(QtCore.QRect(30, 60, 121, 18))
+		self.save_file_label.setObjectName("save_file_label")
+		self.save_file_name = QtWidgets.QLineEdit(cm_pref)
+		self.save_file_name.setGeometry(QtCore.QRect(190, 60, 125, 18))
+		self.save_file_name.setObjectName("save_file_name")
+		self.helptext = QtWidgets.QTextEdit(cm_pref)
+		self.helptext.setGeometry(QtCore.QRect(190, 180, 351, 131))
+		self.helptext.setAcceptDrops(False)
+		self.helptext.setAcceptRichText(False)
+		self.helptext.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+		self.helptext.setObjectName("helptext")
+		self.selectfile = QtWidgets.QPushButton(cm_pref)
+		self.selectfile.setGeometry(QtCore.QRect(340, 60, 131, 18))
+		self.selectfile.setObjectName("selectfile")
+		self.bridge_server="10.203.91.16"
+		self.UseSpline = QtWidgets.QCheckBox(cm_pref)
+		self.UseSpline.setGeometry(QtCore.QRect(350, 10, 161, 17))
+		self.UseSpline.setObjectName("UseSpline")
+		self.Line_Graphs = QtWidgets.QCheckBox(cm_pref)
+		self.Line_Graphs.setGeometry(QtCore.QRect(350, 30, 221, 17))
+		self.Line_Graphs.setObjectName("Line_Graphs")
+		self.save_to_csv=None
+		self.use_spline=False
+		self.Use_Line_Graphs=True
+		self.refresh_rate_msecs=10000
+		self.refresh_rate.setText(str(self.refresh_rate_msecs/1000))
+		self.list_of_cells='sim1celadm01 sim1celadm02 sim1celadm03 sim1celadm04 sim1celadm05 sim1celadm06 sim1celadm07 sim2celadm01 sim2celadm02 sim2celadm03'
+		self.List_Cells.setText(self.list_of_cells)
+		self.bridge_machine.setText(self.bridge_server)
+		#self.refresh_rate.setText(self.refresh_rate_msecs)
+		self.helptext.setPlainText("The bridge server is used to execute (via ssh) the shell script that \
+will fetch the current metrics from the list of cells given above. This means that user equivalence \
+is put in place between the client machine and this service (user oracle), and between this \
+machine and the cells. You can modify the get_mh_p1.sh script to suit your case")
+
+		self.retranslateUi(cm_pref)
+		self.buttonBox.accepted.connect(self.accept)
+		self.buttonBox.rejected.connect(self.reject)
+		self.selectfile.clicked.connect(self.save_to_file)
+		QtCore.QMetaObject.connectSlotsByName(cm_pref)
+
+	def retranslateUi(self, cm_pref):
+		_translate = QtCore.QCoreApplication.translate
+		cm_pref.setWindowTitle(_translate("cm_pref", "Dialog"))
+		self.ref_label.setText(_translate("cm_pref", "Refresh Rate(secs)"))
+		self.bridge_machine_label.setText(_translate("cm_pref", "Bridge Machine"))
+		self.list_cells_label.setText(_translate("cm_pref", "List of cells( \' \' sep)"))
+		self.save_file_label.setText(_translate("cm_pref", "Save data to file?"))
+		self.selectfile.setText(_translate("cm_pref", "Select File"))
+		self.UseSpline.setText(_translate("cm_pref", "Use Spline for graphs?"))
+		self.Line_Graphs.setText(_translate("cm_pref", "Use Stacked Area?"))
+
+	def save_to_file(self):
+		save_file_name, _ =QtWidgets.QFileDialog.getSaveFileName(self.buttonBox, 'Save stats to file','','*.csv')
+		if save_file_name:
+			self.save_to_csv=save_file_name
+			self.save_file_name.setText(self.save_to_csv)
+
+	def reject(self):
+		self.cm_pref.close()
+
+
+	def accept(self):
+		self.refresh_rate_msecs=float(self.refresh_rate.text())*1000
+		self.list_of_cells=self.List_Cells.toPlainText()
+		self.bridge_server=self.bridge_machine.text()
+		self.save_file=self.save_file_name.text()
+		if self.Line_Graphs.isChecked():
+			self.Use_Line_Graphs=False
+		else:
+			self.Use_Line_Graphs=True
+		
+		if self.UseSpline.isChecked():
+			self.use_spline=True
+		self.cm_pref.close()
+
